@@ -20,14 +20,14 @@ const app = express();
 //   })
 //   app.set('views', './views') // specify the views directory, it will atuomatically do this
 //   app.set('view engine', 'evelyn') // register the evelyn view engine
-  
+
   /* End config */
   
 //=============== Routes ===============
 
 //Greeting
 app.get('/greeting', (req , res)=>{
-    res.render('template',{message:'Hello, stranger'})
+    res.send('Hello, stranger')
 })
 
 app.get('/greeting/:name', (req,res)=>{
@@ -35,6 +35,11 @@ app.get('/greeting/:name', (req,res)=>{
     res.send(`Wow! Hello there, ${input}`)
 })
 
+//Tip Calculator
+app.get('/tip/:total/:tipPercentage',(req,res)=>{
+    const ans = parseInt(req.params.total)*(parseInt(req.params.tipPercentage)/100)
+    res.send(`${ans}`)
+})
 
 //Tell the app where to listen to the port
 app.listen(3000, ()=>{
