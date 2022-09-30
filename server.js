@@ -1,6 +1,7 @@
 //require modules
 const express = require('express');
 const fs = require('fs') // this engine requires the fs module like we did Saturday
+const eightBallArray = require('./models/eightBall') //importing array
 
 //create the express app
 const app = express();
@@ -39,6 +40,16 @@ app.get('/greeting/:name', (req,res)=>{
 app.get('/tip/:total/:tipPercentage',(req,res)=>{
     const ans = parseInt(req.params.total)*(parseInt(req.params.tipPercentage)/100)
     res.send(`${ans}`)
+})
+
+//Magic 8 Ball
+app.get('/magic/:input', (req, res)=>{
+    const userQuestion = req.params.input
+    const EightBallResponse = eightBallArray[Math.floor(Math.random()*20)]
+    res.send(`
+        <h1>${userQuestion}</h1>
+        <h1>${EightBallResponse}</h1>
+        `)
 })
 
 //Tell the app where to listen to the port
