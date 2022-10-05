@@ -45,7 +45,7 @@ app.get('/tip/:total/:tipPercentage',(req,res)=>{
 //Magic 8 Ball
 app.get('/magic/:input', (req, res)=>{
     const userQuestion = req.params.input
-    const EightBallResponse = eightBallArray[Math.floor(Math.random()*20)]
+    const EightBallResponse = eightBallArray[Math.floor(Math.random()*21)]
     res.send(`
         <h1>${userQuestion}</h1>
         <h1>${EightBallResponse}</h1>
